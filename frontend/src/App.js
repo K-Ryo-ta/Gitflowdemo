@@ -1,26 +1,18 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Joke from './pages/Joke';
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch('http://localhost:3000/api')
-      .then(response => response.text())
-      .then(message => {
-        setMessage(message);
-      });
-  }, [])
-
-  return (
-    <div className="App">
-      <div className="App-content">
-        <p>
-          {message}
-        </p>
-      </div>
-    </div>
-  );
+	return (
+		<Router>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/joke" element={<Joke />} />
+			</Routes>
+		</Router>
+	);
 }
 
 export default App;
